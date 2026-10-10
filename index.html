@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Distancia Entre Nosotros — Teatro</title>
+    <meta name="description" content="La Distancia Entre Nosotros: adaptación teatral de la novela “El Mar Que Nos Trajo” de Griselda Gambaro.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tab-pane {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .tab-pane.active {
+            display: block;
+            opacity: 1;
+        }
+        .nav-links a.active {
+            color: var(--gold);
+            position: relative;
+        }
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--gold);
+        }
+        .entradas-box {
+            background: rgba(28, 22, 17, 0.85);
+            border: 1px solid var(--line);
+            padding: 4rem;
+            max-width: 800px;
+            margin: 5rem auto;
+            text-align: center;
+        }
+        .entradas-box h1 { font-size: 3rem; color: var(--gold); margin-bottom: 2rem; }
+        .entradas-box p { font-size: 1.2rem; line-height: 1.8; font-family: var(--sans); }
+        .entradas-box strong { color: var(--cream); font-weight: 500; }
+        .price { font-family: var(--serif); font-size: 2.5rem; color: var(--gold); display: block; margin: 1.5rem 0; }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Filtro de agua para el reflejo del título -->
+    <svg class="svg-defs" aria-hidden="true">
+        <filter id="water">
+            <feTurbulence type="fractalNoise" baseFrequency="0.008 0.09" numOctaves="2" seed="3" result="noise">
+                <animate attributeName="baseFrequency" dur="14s" values="0.008 0.09;0.012 0.13;0.008 0.09" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="16" />
+        </filter>
+    </svg>
+
+    <!-- Preloader -->
+    <div class="preloader" aria-hidden="true">
+        <div class="preloader-inner">
+            <span class="pl-word">La distancia</span>
+            <span class="pl-line"></span>
+            <span class="pl-word pl-italic">entre nosotros</span>
+        </div>
+    </div>
+
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+    <!-- Navegación por pestañas -->
+    <header class="nav" id="nav">
+        <a href="#" data-tab="tab-obra" class="nav-logo tab-link">L<span>·</span>D<span>·</span>E<span>·</span>N</a>
+        <nav class="nav-links">
+            <a href="#" data-tab="tab-obra" class="tab-link active">La obra</a>
+            <a href="#" data-tab="tab-tiempos" class="tab-link">Dos orillas</a>
+            <a href="#" data-tab="tab-afiche" class="tab-link">Afiche y Reseñas</a>
+            <a href="#" data-tab="tab-entradas" class="tab-link">Entradas</a>
+        </nav>
+    </header>
+
+    <main>
+        
+        <!-- PESTAÑA 1: LA OBRA -->
+        <div id="tab-obra" class="tab-pane active">
+            <!-- HERO -->
+            <section class="hero" id="inicio">
+                <div class="hero-bg"><div class="hero-bg-img" style="background-image:url('img/mar.jpg')"></div></div>
+                <div class="fog fog-1"></div>
+                <div class="fog fog-2"></div>
+                <canvas id="dust"></canvas>
+                <div class="hero-vignette"></div>
+
+                <div class="hero-content">
+                    <p class="hero-kicker">Teatro &nbsp;·&nbsp; Estreno &nbsp;·&nbsp; Octubre 2026</p>
+                    <div class="title-wrap">
+                        <h1 class="hero-title">
+                            <span class="t-la">La</span>
+                            <span class="t-distancia">DISTANCIA</span>
+                            <span class="t-entre">entre nosotros</span>
+                        </h1>
+                        <div class="hero-reflection" aria-hidden="true"></div>
+                    </div>
+                </div>
+
+                <div class="hero-bottom">
+                    <span class="hb-side">Sobre la novela de Griselda Gambaro</span>
+                    <a class="scroll-cue tab-link" href="#" data-tab="tab-tiempos"><span>Descubrir</span><i></i></a>
+                    <span class="hb-side">21 · 10 · 20:00 hs</span>
+                </div>
+            </section>
+
+            <!-- LA OBRA -->
+            <section class="obra" id="obra">
+                <div class="section-label reveal"><span>01</span>La obra</div>
+                <p class="obra-text" id="wordReveal"><em>La Distancia Entre Nosotros</em> es una adaptación teatral de la novela <em>“El Mar Que Nos Trajo”</em> de Griselda Gambaro. A través de una historia marcada por la distancia, los vínculos familiares y el paso del tiempo, descubrimos cómo las decisiones, las separaciones y los reencuentros dejan huellas en la vida de las personas.</p>
+                <p class="obra-closing reveal">Una historia sobre el amor, la memoria y los lazos que permanecen a pesar de todo.</p>
+            </section>
+
+            <!-- MARQUESINA -->
+            <div class="marquee" aria-hidden="true">
+                <div class="marquee-track">
+                    <span class="fill">Amor</span><b>✦</b><span>Memoria</span><b>✦</b><span class="fill">Distancia</span><b>✦</b><span>Tiempo</span><b>✦</b><span class="fill">Raíces</span><b>✦</b><span>Regreso</span><b>✦</b>
+                    <span class="fill">Amor</span><b>✦</b><span>Memoria</span><b>✦</b><span class="fill">Distancia</span><b>✦</b><span>Tiempo</span><b>✦</b><span class="fill">Raíces</span><b>✦</b><span>Regreso</span><b>✦</b>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PESTAÑA 2: DOS ORILLAS -->
+        <div id="tab-tiempos" class="tab-pane">
+            <section class="tiempos" id="tiempos" style="padding-top: 10rem;">
+                <div class="section-label reveal"><span>02</span>Dos orillas</div>
+                <div class="tiempos-head">
+                    <h2 class="tiempos-title reveal">Dos orillas.<br><em>Un mismo mar.</em></h2>
+                    <p class="reveal" style="--d:.15s">Una historia que atraviesa generaciones: de los barcos que llegaban cargados de promesas a las ciudades de hoy, donde todavía resuenan las voces de quienes vinieron antes.</p>
+                </div>
+
+                <div class="eras" id="eras">
+                    <figure class="era era-past">
+                        <div class="era-img"><img src="img/puerto.jpg" alt="Puerto antiguo con barcos de vela e inmigrantes"></div>
+                        <figcaption>
+                            <p>Un barco, una despedida, una promesa que cruza el océano.</p>
+                        </figcaption>
+                    </figure>
+
+                    <div class="era-divider" aria-hidden="true">
+                        <span></span>
+                        <em>la distancia</em>
+                        <span></span>
+                    </div>
+
+                    <figure class="era era-present">
+                        <!-- IMAGEN CORREGIDA AQUÍ -->
+                        <div class="era-img"><img src="img/puerto_madero_1900.jpg" alt="Puerto antiguo de Buenos Aires"></div>
+                        <figcaption>
+                            <!-- TEXTO CORREGIDO AQUÍ -->
+                            <p>Una ciudad que guarda recuerdos de quienes dejamos atrás.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- TEMAS -->
+            <section class="temas">
+                <div class="wrap">
+                    <div class="section-label reveal"><span>03</span>Lo que permanece</div>
+                    <h2 class="temas-intro reveal">Lo que el tiempo <em>no logra borrar.</em></h2>
+                    <div class="temas-grid">
+                        <article class="tema reveal">
+                            <span class="tema-num">I.</span>
+                            <h3>El amor</h3>
+                            <p>Que sobrevive a los océanos, a los silencios y a los años.</p>
+                        </article>
+                        <article class="tema reveal" style="--d:.15s">
+                            <span class="tema-num">II.</span>
+                            <h3>La memoria</h3>
+                            <p>Lo que heredamos sin saberlo; lo que guardamos sin nombrarlo.</p>
+                        </article>
+                        <article class="tema reveal" style="--d:.3s">
+                            <span class="tema-num">III.</span>
+                            <h3>Los lazos</h3>
+                            <p>Hilos invisibles entre quienes se fueron y quienes se quedaron.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- PESTAÑA 3: AFICHE Y RESEÑAS -->
+        <div id="tab-afiche" class="tab-pane">
+            
+            <!-- RESEÑAS -->
+            <section class="resenas" id="resenas" style="padding-top: 10rem;">
+                <div class="wrap">
+                    <div class="section-label reveal"><span>04</span>Reseñas</div>
+                    <blockquote class="resena-quote reveal">
+                        "La distancia entre nosotros es una obra emocionante y cautivadora desde el principio hasta el final. Con actuaciones acertadas y una dirección impecable. Pude conectar con la historia de inmediato con el público gracias a su frescura y naturalidad. La puesta en escena, tan cuidada como envolvente, hace que el tiempo se pase volando. En conclusión, es una experiencia artística completa, conmovedora y profundamente disfrutable, una recomendación absoluta para quienes buscan buen teatro ¡Totalmente imperdible!"
+                    </blockquote>
+                </div>
+            </section>
+
+            <!-- AFICHE -->
+            <section class="afiche" id="afiche">
+                <div class="afiche-grid">
+                    <div class="afiche-text">
+                        <div class="section-label reveal"><span>05</span>El afiche</div>
+                        <h2 class="reveal">Dos siluetas.<br><em>Un reflejo.</em></h2>
+                        <p class="reveal" style="--d:.1s">Una historia de amores, separados por el océano, pero que nunca murió.</p>
+                        <a href="img/poster.jpg" download="La-Distancia-Entre-Nosotros-afiche.jpg" class="btn-line reveal" style="--d:.2s">Descargar afiche <i>↓</i></a>
+                    </div>
+                    <div class="afiche-frame reveal" id="tilt" style="--d:.15s">
+                        <div class="afiche-card">
+                            <img src="img/poster.jpg" alt="Afiche oficial de La Distancia Entre Nosotros">
+                            <div class="afiche-glare"></div>
+                        </div>
+                        <span class="afiche-caption">Afiche oficial — 2026</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- PESTAÑA 4: ENTRADAS -->
+        <div id="tab-entradas" class="tab-pane">
+            <section class="funcion" id="funcion" style="padding-top: 10rem;">
+                <div class="funcion-bg" style="background-image:url('img/mar.jpg')"></div>
+                <div class="section-label reveal"><span>06</span>Función</div>
+                <h2 class="funcion-title reveal">Nos vemos <em>del otro lado del telón.</em></h2>
+
+                <div class="entradas-box reveal">
+                    <h1>Asegurá tu lugar</h1>
+                    <p>Se pueden comprar en la portería de la <strong>escuela Niño Jesús</strong> a <span class="price">$8000</span></p>
+                    <p>O se puede comunicar al <strong>+54 9 3426 50-7287</strong> para la venta.</p>
+                    <p style="color: #c2a578; font-style: italic; margin-top: 2rem;">Solo se puede recibir efectivo en ambas opciones.</p>
+                    <a href="https://wa.me/5493426507287" target="_blank" class="btn-line" style="margin-top: 2rem;">Contactar por WhatsApp <i>→</i></a>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <!-- ELIMINADO EL DIV QUE DECÍA "entre nosotros" EN GIGANTE AQUÍ -->
+        <div class="footer-row">
+            <span>La Distancia Entre Nosotros</span>
+            <span>Adaptación de “El mar que nos trajo” — Griselda Gambaro</span>
+            <a href="#" class="tab-link" data-tab="tab-obra">Volver al inicio ↑</a>
+        </div>
+    </footer>
+
+    <!-- Lógica de Pestañas -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-link');
+            const panes = document.querySelectorAll('.tab-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = tab.getAttribute('data-tab');
+                    if (!targetId) return;
+
+                    // Remover activo de todos los enlaces y paneles
+                    document.querySelectorAll('.tab-link').forEach(t => t.classList.remove('active'));
+                    panes.forEach(p => p.classList.remove('active'));
+
+                    // Activar el correspondiente
+                    // activamos todos los links que apunten a este tab
+                    document.querySelectorAll(`.tab-link[data-tab="${targetId}"]`).forEach(t => t.classList.add('active'));
+                    document.getElementById(targetId).classList.add('active');
+
+                    // Resetear scroll
+                    window.scrollTo(0, 0);
+
+                    // Refrescar el IntersectionObserver en script.js re-disparando un evento o forzando scroll
+                    window.dispatchEvent(new Event('scroll'));
+                });
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
