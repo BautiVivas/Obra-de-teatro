@@ -19,19 +19,60 @@
             display: block;
             opacity: 1;
         }
-        .nav-links a.active {
-            color: var(--gold);
+
+        /* Pestañas destacadas */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(28, 22, 17, 0.75);
+            border: 1px solid rgba(236, 226, 207, 0.2);
+            border-radius: 999px;
+            padding: 0.35rem 0.6rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .nav-links a {
+            padding: 0.6rem 1.4rem;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(236, 226, 207, 0.65);
+            text-decoration: none;
+            transition: all 0.3s var(--ease);
             position: relative;
         }
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--gold);
+        .nav-links a:hover {
+            color: var(--cream);
+            opacity: 1;
         }
+        .nav-links a.active {
+            color: var(--ink) !important;
+            background-color: var(--gold) !important;
+            font-weight: 500;
+            opacity: 1 !important;
+            box-shadow: 0 4px 20px rgba(194, 165, 120, 0.4);
+        }
+        .nav-links a::after {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem 1rem;
+            }
+            .nav-links {
+                gap: 0.2rem;
+                padding: 0.25rem 0.35rem;
+            }
+            .nav-links a {
+                padding: 0.45rem 0.75rem;
+                font-size: 0.62rem;
+                letter-spacing: 0.08em;
+            }
+        }
+
         .entradas-box {
             background: rgba(28, 22, 17, 0.85);
             border: 1px solid var(--line);
@@ -40,10 +81,19 @@
             margin: 5rem auto;
             text-align: center;
         }
-        .entradas-box h1 { font-size: 3rem; color: var(--gold); margin-bottom: 2rem; }
+        .entradas-box h1 { font-size: 3rem; color: var(--gold); margin-bottom: 2rem; text-align: center; }
         .entradas-box p { font-size: 1.2rem; line-height: 1.8; font-family: var(--sans); }
         .entradas-box strong { color: var(--cream); font-weight: 500; }
-        .price { font-family: var(--serif); font-size: 2.5rem; color: var(--gold); display: block; margin: 1.5rem 0; }
+        .price {
+            font-family: var(--serif);
+            font-size: 3.2rem;
+            color: var(--gold);
+            display: block;
+            margin: 1.5rem auto;
+            text-align: center !important;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
     </style>
 </head>
 <body class="loading">
@@ -228,15 +278,55 @@
         <div id="tab-entradas" class="tab-pane">
             <section class="funcion" id="funcion" style="padding-top: 10rem;">
                 <div class="funcion-bg" style="background-image:url('img/mar.jpg')"></div>
-                <div class="section-label reveal"><span>06</span>Función</div>
+                <div class="section-label reveal"><span>06</span>Función y Entradas</div>
                 <h2 class="funcion-title reveal">Nos vemos <em>del otro lado del telón.</em></h2>
 
+                <!-- Cuenta regresiva -->
+                <div class="countdown reveal" id="countdown">
+                    <div class="cd-item"><strong data-cd="d">00</strong><span>Días</span></div>
+                    <div class="cd-item"><strong data-cd="h">00</strong><span>Horas</span></div>
+                    <div class="cd-item"><strong data-cd="m">00</strong><span>Minutos</span></div>
+                    <div class="cd-item"><strong data-cd="s">00</strong><span>Segundos</span></div>
+                </div>
+
+                <!-- Ticket simulado -->
+                <div class="ticket reveal">
+                    <div class="ticket-main">
+                        <span class="ticket-kicker">Admite uno &nbsp;·&nbsp; Platea</span>
+                        <h3>La distancia <em>entre nosotros</em></h3>
+                        <div class="ticket-info">
+                            <div><span>Fecha</span><strong>Miércoles 21 de octubre</strong></div>
+                            <div><span>Hora</span><strong>20:00 hs</strong></div>
+                            <div><span>Lugar</span><strong>Centro Cultural Provincial</strong></div>
+                        </div>
+                    </div>
+                    <div class="ticket-stub">
+                        <span class="stub-num">Nº 2110</span>
+                        <div class="barcode"></div>
+                        <span class="stub-num" style="font-family: var(--serif); font-size: 1.5rem; color: var(--sepia); font-weight: bold;">$8.000</span>
+                    </div>
+                </div>
+
+                <!-- Información de compra -->
                 <div class="entradas-box reveal">
+                    <div class="section-label"><span>🎟</span>Puntos de venta</div>
                     <h1>Asegurá tu lugar</h1>
-                    <p>Se pueden comprar en la portería de la <strong>escuela Niño Jesús</strong> a <span class="price">$8000</span></p>
-                    <p>O se puede comunicar al <strong>+54 9 3426 50-7287</strong> para la venta.</p>
-                    <p style="color: #c2a578; font-style: italic; margin-top: 2rem;">Solo se puede recibir efectivo en ambas opciones.</p>
-                    <a href="https://wa.me/5493426507287" target="_blank" class="btn-line" style="margin-top: 2rem;">Contactar por WhatsApp <i>→</i></a>
+                    <p style="text-align: center;">Las entradas se pueden comprar en la portería de la <strong>escuela Niño Jesús</strong> a:</p>
+                    <div class="price">$8000</div>
+
+                    <p style="text-align: center;">O se puede comunicar al <strong>+54 9 3426 50-7287</strong> para la venta y reservas.</p>
+                    <div style="margin: 1.5rem 0 2rem; text-align: center;">
+                        <a href="https://wa.me/5493426507287" target="_blank" class="btn-solid">Contactar por WhatsApp <i>→</i></a>
+                    </div>
+
+                    <p style="color: var(--gold); font-style: italic; text-align: center;">Solo se puede recibir efectivo en ambas opciones.</p>
+                </div>
+
+                <!-- Acciones y ubicaciones -->
+                <div class="funcion-actions reveal" style="margin-top: 3rem;">
+                    <button type="button" id="addCal" class="btn-line">Agregar al calendario <i>+</i></button>
+                    <a class="btn-line" href="https://www.google.com/maps/search/?api=1&query=Centro+Cultural+Provincial+Santa+Fe" target="_blank" rel="noopener">Ubicación del Centro Cultural <i>📍</i></a>
+                    <a class="btn-line" href="https://www.google.com/maps/search/?api=1&query=Escuela+Niño+Jesús+Santa+Fe" target="_blank" rel="noopener">Ubicación Escuela Niño Jesús <i>📍</i></a>
                 </div>
             </section>
         </div>
@@ -276,8 +366,14 @@
                     // Resetear scroll
                     window.scrollTo(0, 0);
 
-                    // Refrescar el IntersectionObserver en script.js re-disparando un evento o forzando scroll
-                    window.dispatchEvent(new Event('scroll'));
+                    // Refrescar el IntersectionObserver y activar reveals de la pestaña
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('scroll'));
+                        document.querySelectorAll(`#${targetId} .reveal`).forEach(el => {
+                            const r = el.getBoundingClientRect();
+                            if (r.top < window.innerHeight) el.classList.add('in');
+                        });
+                    }, 60);
                 });
             });
         });

@@ -26,6 +26,13 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
+p, blockquote {
+    text-align: justify;
+    text-justify: inter-word;
+}
+.hero-kicker {
+    text-align: center;
+}
 body.loading { overflow: hidden; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
