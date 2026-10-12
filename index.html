@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>La Distancia Entre Nosotros — Teatro</title>
     <meta name="description" content="La Distancia Entre Nosotros: adaptación teatral de la novela “El Mar Que Nos Trajo” de Griselda Gambaro.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,27 +58,12 @@
             display: none !important;
         }
 
-        @media (max-width: 768px) {
-            .nav {
-                padding: 1rem 1rem;
-            }
-            .nav-links {
-                gap: 0.2rem;
-                padding: 0.25rem 0.35rem;
-            }
-            .nav-links a {
-                padding: 0.45rem 0.75rem;
-                font-size: 0.62rem;
-                letter-spacing: 0.08em;
-            }
-        }
-
         .entradas-box {
             background: rgba(28, 22, 17, 0.85);
             border: 1px solid var(--line);
-            padding: 4rem;
+            padding: clamp(2rem, 5vw, 4rem);
             max-width: 800px;
-            margin: 5rem auto;
+            margin: clamp(2.5rem, 6vw, 5rem) auto;
             text-align: center;
         }
         .entradas-box h1 { font-size: 3rem; color: var(--gold); margin-bottom: 2rem; text-align: center; }
@@ -181,7 +166,7 @@
 
         <!-- PESTAÑA 2: DOS ORILLAS -->
         <div id="tab-tiempos" class="tab-pane">
-            <section class="tiempos" id="tiempos" style="padding-top: 10rem;">
+            <section class="tiempos tab-top-pad" id="tiempos">
                 <div class="section-label reveal"><span>02</span>Dos orillas</div>
                 <div class="tiempos-head">
                     <h2 class="tiempos-title reveal">Dos orillas.<br><em>Un mismo mar.</em></h2>
@@ -244,7 +229,7 @@
         <div id="tab-afiche" class="tab-pane">
             
             <!-- RESEÑAS -->
-            <section class="resenas" id="resenas" style="padding-top: 10rem;">
+            <section class="resenas tab-top-pad" id="resenas">
                 <div class="wrap">
                     <div class="section-label reveal"><span>04</span>Reseñas</div>
                     <blockquote class="resena-quote reveal">
@@ -276,7 +261,7 @@
 
         <!-- PESTAÑA 4: ENTRADAS -->
         <div id="tab-entradas" class="tab-pane">
-            <section class="funcion" id="funcion" style="padding-top: 10rem;">
+            <section class="funcion tab-top-pad" id="funcion">
                 <div class="funcion-bg" style="background-image:url('img/mar.jpg')"></div>
                 <div class="section-label reveal"><span>06</span>Función y Entradas</div>
                 <h2 class="funcion-title reveal">Nos vemos <em>del otro lado del telón.</em></h2>
@@ -313,13 +298,7 @@
                     <h1>Asegurá tu lugar</h1>
                     <p style="text-align: center;">Las entradas se pueden comprar en la portería de la <strong>escuela Niño Jesús</strong> a:</p>
                     <div class="price">$8000</div>
-
-                    <p style="text-align: center;">O se puede comunicar al <strong>+54 9 3426 50-7287</strong> para la venta y reservas.</p>
-                    <div style="margin: 1.5rem 0 2rem; text-align: center;">
-                        <a href="https://wa.me/5493426507287" target="_blank" class="btn-solid">Contactar por WhatsApp <i>→</i></a>
-                    </div>
-
-                    <p style="color: var(--gold); font-style: italic; text-align: center;">Solo se puede recibir efectivo en ambas opciones.</p>
+                    <p style="color: var(--gold); font-style: italic; text-align: center; margin-top: 1.5rem;">Solo se puede comprar en efectivo.</p>
                 </div>
 
                 <!-- Acciones y ubicaciones -->
